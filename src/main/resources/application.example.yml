@@ -1,0 +1,53 @@
+spring:
+  datasource:
+    postgres: # DB name
+      jdbc-url: jdbc:postgresql://127.0.0.1:5432/postgres
+      username: koy
+      password:
+      driver-class-name: org.postgresql.Driver
+    postgres2: # DB name v2
+      jdbc-url: jdbc:postgresql://127.0.0.1:5432/postgres2
+      username: koy
+      password:
+      driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        show_sql: true
+        format_sql: true
+        hbm2ddl:
+          auto: validate
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      jwt-token:
+        key: key
+        expire-time: 3600  # 1 hour
+  cloud:
+    aws:
+      credentials:
+        access-key: access-key
+        secret-key: secret-key
+      s3:
+        region: ap-northeast-2
+        endpoint: endpoint  # Minio endpoint (if exist)
+        bucket: bucket
+        stack.auto: false
+logging:
+  level:
+    com:
+      zaxxer:
+        hikari: INFO
+    javax:
+      sql:
+        javax.sql.DataSource: off
+    jdbc:
+      audit: off # exclude resultSet info logging
+      resultset: off # include resultSet info logging
+      resultsettable: off # result table logging
+      sqlonly: off # SQL logging
+      sqltiming: off # SQL + time(ms) logging
+      connection: off # connection logging
